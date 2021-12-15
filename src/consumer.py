@@ -1,9 +1,13 @@
+import os
 import pulsar
+from dotenv import load_dotenv
 
-pulsarURL = ''
-pulsarJWT = ''
-pulsarTopic = ''
-subscriptionName = ''
+load_dotenv()
+
+pulsarURL = os.getenv('PULSAR_URL')
+pulsarJWT = os.getenv('PULSAR_JWT')
+pulsarTopic = os.getenv('PULSAR_TOPIC')
+subscriptionName = os.getenv('SUBSCRIPTION')
 
 client = pulsar.Client(pulsarURL, authentication=pulsar.AuthenticationToken(pulsarJWT))
 
