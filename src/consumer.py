@@ -4,14 +4,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-pulsarURL = os.getenv('PULSAR_URL')
-pulsarJWT = os.getenv('PULSAR_JWT')
-pulsarTopic = os.getenv('PULSAR_TOPIC')
-subscriptionName = os.getenv('SUBSCRIPTION')
+pulsarURL = os.getenv("PULSAR_URL")
+pulsarJWT = os.getenv("PULSAR_JWT")
+pulsarTopic = os.getenv("PULSAR_TOPIC")
+subscriptionName = os.getenv("SUBSCRIPTION")
 
 client = pulsar.Client(pulsarURL, authentication=pulsar.AuthenticationToken(pulsarJWT))
 
-consumer = client.subscribe(pulsarTopic,subscriptionName)
+consumer = client.subscribe(pulsarTopic, subscriptionName)
 
 while True:
     msg = consumer.receive()
