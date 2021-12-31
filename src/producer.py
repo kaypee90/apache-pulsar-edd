@@ -1,3 +1,7 @@
+"""
+Author: Kaypee90
+"""
+
 import os
 import pulsar
 import logging
@@ -9,14 +13,14 @@ load_dotenv()
 ch = logging.getLogger()
 ch.setLevel(logging.DEBUG)
 
-pulsarURL = os.getenv('PULSAR_URL')
-pulsarJWT = os.getenv('PULSAR_JWT')
-pulsarTopic = os.getenv('PULSAR_TOPIC')
+pulsar_url = os.getenv("PULSAR_URL")
+pulsar_jwt = os.getenv("PULSAR_JWT")
+pulsar_topic = os.getenv("PULSAR_TOPIC")
 
-client = pulsar.Client(pulsarURL,authentication=pulsar.AuthenticationToken(pulsarJWT))
+client = pulsar.Client(pulsar_url, authentication=pulsar.AuthenticationToken(pulsar_jwt))
 
-producer = client.create_producer(pulsarTopic)
+producer = client.create_producer(pulsar_topic)
 
-producer.send('Hello world!'.encode('utf-8'))
+producer.send("Hello world!".encode("utf-8"))
 
 client.close()
