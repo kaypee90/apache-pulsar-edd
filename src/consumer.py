@@ -1,17 +1,20 @@
+"""
+Author: Kaypee90
+"""
 import os
 import pulsar
 from dotenv import load_dotenv
 
 load_dotenv()
 
-pulsarURL = os.getenv("PULSAR_URL")
-pulsarJWT = os.getenv("PULSAR_JWT")
-pulsarTopic = os.getenv("PULSAR_TOPIC")
-subscriptionName = os.getenv("SUBSCRIPTION")
+pulsar_url = os.getenv("PULSAR_URL")
+pulsar_jwt = os.getenv("PULSAR_JWT")
+pulsar_topic = os.getenv("PULSAR_TOPIC")
+subscription_name = os.getenv("SUBSCRIPTION")
 
-client = pulsar.Client(pulsarURL, authentication=pulsar.AuthenticationToken(pulsarJWT))
+client = pulsar.Client(pulsar_url, authentication=pulsar.AuthenticationToken(pulsar_jwt))
 
-consumer = client.subscribe(pulsarTopic, subscriptionName)
+consumer = client.subscribe(pulsar_topic, subscription_name)
 
 while True:
     msg = consumer.receive()
